@@ -1,0 +1,124 @@
+<table class="table-custom">
+                <thead #dataTable class="white-space-nowrap bg-green-200">
+                    <tr>
+                        <th class="text-center" rowspan="2">ລ.ດ</th>
+                        <th class="text-center" rowspan="2">ລາຍລະອຽດ</th>
+                        <th class="text-center" rowspan="2">ລວມ</th>
+                        <th class="text-center" colspan="2">ແບ່ງປັນ</th>
+                        <th class="text-center" colspan="2">ສອບເສັງເຂົ້າ</th>
+                        <th class="text-center" rowspan="2">ນະໂຍບາຍ</th>
+                        <th class="text-center" rowspan="2">ຊາວໜຸ່ມ <br> ແຮກສ່ຽວ</th>
+                        <th class="text-center" rowspan="2">ກ/ຊ <br> ສຶກສາ </th>
+                        <th class="text-center" rowspan="2">ພ/ງ <br> ສະຖາບັນອະຊີວະ <br> ແບ່ງເອງ</th>
+                        <th rowspan="2" class="text-center">ພ/ງ <br> ກະຊວງອື່ນ</th>
+                        <th rowspan="2" class="text-center">ກ/ຊ <br> ປ້ອງກັນປະເທດ</th>
+                    </tr>
+                    <tr>
+                        <th class="text-center">ສຳພາດ</th>
+                        <th class="text-center">ພ/ງ</th>
+                        <th class="text-center">ບໍ່ຈ່າຍຄ່າຮຽນ</th>
+                        <th class="text-center">ຈ່າຍຄ່າຮຽນ</th>
+                    </tr>
+                </thead>
+                <tbody class="white-space-nowrap text-center">
+                    <ng-container *ngIf="total as tt">
+                        <tr class="font-bold">
+                            <td></td>
+                            <td>
+                                <span>ຈຳນວນນັກຮຽນ-ພະນັກງານ ຮຽນຕໍ່ສະຖານ <br> ອາຊີວະສຶກສາ ທັງໝົດ ໃນສົກປີ</span>
+                                <span *ngIf="academicYear" class="ml-2">({{academicYear}}-{{academicYear+1}})</span>
+                            </td>
+                            <td>{{tt?.total | number: '1.0': 'en-US'}}</td>
+                            <td>{{tt?.sharedInterview | number: '1.0': 'en-US'}}</td>
+                            <td>{{tt?.sharedStaff| number: '1.0': 'en-US'}}</td>
+                            <td>{{tt?.examNotPay | number: '1.0': 'en-US'}}</td>
+                            <td>{{tt?.examPay| number: '1.0': 'en-US'}}</td>
+                            <td>{{tt?.policy | number: '1.0': 'en-US'}}</td>
+                            <td>{{tt?.youth | number: '1.0': 'en-US'}}</td>
+                            <td>{{tt?.moe | number: '1.0': 'en-US'}}</td>
+                            <td>{{tt?.dotve | number: '1.0': 'en-US'}}</td>
+                            <td>{{tt?.staffOther | number: '1.0': 'en-US'}}</td>
+                            <td>{{tt?.staffMond | number: '1.0': 'en-US'}}</td>
+                        </tr>
+                    </ng-container>
+
+                    <ng-container *ngFor="let sl of sumByLevels; let h=index">
+                        <tr class="font-bold">
+                            <td>{{h+1}}</td>
+                            <td>{{sl?.name}}</td>
+                            <td>{{sl?.total | number: '1.0': 'en-US'}}</td>
+                            <td>{{sl?.sharedInterview | number: '1.0': 'en-US'}}</td>
+                            <td>{{sl?.sharedStaff| number: '1.0': 'en-US'}}</td>
+                            <td>{{sl?.examNotPay | number: '1.0': 'en-US'}}</td>
+                            <td>{{sl?.examPay| number: '1.0': 'en-US'}}</td>
+                            <td>{{sl?.policy | number: '1.0': 'en-US'}}</td>
+                            <td>{{sl?.youth | number: '1.0': 'en-US'}}</td>
+                            <td>{{sl?.moe | number: '1.0': 'en-US'}}</td>
+                            <td>{{sl?.dotve | number: '1.0': 'en-US'}}</td>
+                            <td>{{sl?.staffOther | number: '1.0': 'en-US'}}</td>
+                            <td>{{sl?.staffMond | number: '1.0': 'en-US'}}</td>
+                        </tr>
+                    </ng-container>
+
+                    <tr>
+                        <td colspan="13" height="25"></td>
+                    </tr>
+
+                    <ng-container *ngFor="let gl of groupByLevels">
+                        <tr class="font-bold bg-green-100">
+                            <td></td>
+                            <td>{{gl?.name}}</td>
+                            <td>{{gl?.total | number: '1.0': 'en-US'}}</td>
+                            <td>{{gl?.sharedInterview | number: '1.0': 'en-US'}}</td>
+                            <td>{{gl?.sharedStaff| number: '1.0': 'en-US'}}</td>
+                            <td>{{gl?.examNotPay | number: '1.0': 'en-US'}}</td>
+                            <td>{{gl?.examPay | number: '1.0': 'en-US'}}</td>
+                            <td>{{gl?.policy | number: '1.0': 'en-US'}}</td>
+                            <td>{{gl?.youth | number: '1.0': 'en-US'}}</td>
+                            <td>{{gl?.moe | number: '1.0': 'en-US'}}</td>
+                            <td>{{gl?.dotve | number: '1.0': 'en-US'}}</td>
+                            <td>{{gl?.staffOther | number: '1.0': 'en-US'}}</td>
+                            <td>{{gl?.staffMond | number: '1.0': 'en-US'}}</td>
+                        </tr>
+
+                        <ng-container *ngFor="let sl of gl?.institutions; let i=index">
+                            <tr class="font-bold">
+                                <td>{{i+1}}</td>
+                                <td>{{sl?.name}}</td>
+                                <td>{{sl?.total | number: '1.0': 'en-US'}}</td>
+                                <td>{{sl?.sharedInterview | number: '1.0': 'en-US'}}</td>
+                                <td>{{sl?.sharedStaff| number: '1.0': 'en-US'}}</td>
+                                <td>{{sl?.examNotPay | number: '1.0': 'en-US'}}</td>
+                                <td>{{sl?.examPay| number: '1.0': 'en-US'}}</td>
+                                <td>{{sl?.policy | number: '1.0': 'en-US'}}</td>
+                                <td>{{sl?.youth | number: '1.0': 'en-US'}}</td>
+                                <td>{{sl?.moe | number: '1.0': 'en-US'}}</td>
+                                <td>{{sl?.dotve | number: '1.0': 'en-US'}}</td>
+                                <td>{{sl?.staffOther | number: '1.0': 'en-US'}}</td>
+                                <td>{{sl?.staffMond | number: '1.0': 'en-US'}}</td>
+                            </tr>
+
+                            <ng-container *ngFor="let subj of sl?.subjects let k=index">
+                                <tr>
+                                    <td>{{i+1}}.{{k+1}}</td>
+                                    <td>{{subj?.name}}</td>
+                                    <td>{{subj?.total | number: '1.0': 'en-US'}}</td>
+                                    <td>{{subj?.sharedInterview | number: '1.0': 'en-US'}}</td>
+                                    <td>{{subj?.sharedStaff| number: '1.0': 'en-US'}}</td>
+                                    <td>{{subj?.examNotPay | number: '1.0': 'en-US'}}</td>
+                                    <td>{{subj?.examPay | number: '1.0': 'en-US'}}</td>
+                                    <td>{{subj?.policy | number: '1.0': 'en-US'}}</td>
+                                    <td>{{subj?.youth | number: '1.0': 'en-US'}}</td>
+                                    <td>{{subj?.moe | number: '1.0': 'en-US'}}</td>
+                                    <td>{{subj?.dotve | number: '1.0': 'en-US'}}</td>
+                                    <td>{{subj?.staffOther | number: '1.0': 'en-US'}}</td>
+                                    <td>{{subj?.staffMond | number: '1.0': 'en-US'}}</td>
+                                </tr>
+                            </ng-container>
+
+                        </ng-container>
+
+                    </ng-container>
+
+                </tbody>
+            </table>
